@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="container"></div>
+    <script src="/bundle.js"></script>
+    <script>
+        var templateStr = `     
+        <ul id="list">
+                {{#arr}}
+                    <li>
+                        <p>{{name}}</p>
+                        <p>{{age}}</p>
+                        {{#hobbies}}
+                        <p>{{.}}</p>
+                            
+                        {{/hobbies}}
+                        {{#isTrue}}
+                            <p>{{name}}</p>
+                        {{/isTrue}}
+                    </li>
+                {{/arr}}
+            </ul>`
+        var templateStr1 = `
+          <h2>我买了一个{{name}}，好{{age}},考试考了{{a.b}}</h2>`
+        var data1 = {
+            age: '12312',
+            name: 'dd',
+            a: {
+                b: 100
+            }
+        }
+        var data = {
+            arr: [
+                {
+                    name: '小明',
+                    age: '18',
+                    hobbies: ['足球', '篮球'],
+                    isTrue: false,
+
+                },
+                {
+                    name: '小明11',
+                    age: '183',
+                    hobbies: ['足球', '排球'],
+                    isTrue: true,
+                },
+
+            ]
+        }
+        var dom = SLC_Template.render(templateStr, data)
+        var container = document.getElementById('container').innerHTML = dom
+    </script>
+</body>
+
+</html>
